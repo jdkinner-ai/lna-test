@@ -1,16 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edge 141 - LNA Prompt Test</title>
+    <style>
+      body { font-family: sans-serif; margin: 2em; }
+      .result { margin-top: 1em; padding: 1em; border-radius: 4px; }
+      .success { background: #e6ffe6; color: #1a7f37; }
+      .error { background: #ffe6e6; color: #b91c1c; }
+    </style>
+  </head>
   <body>
-    <h2>Local Network Access Test</h2>
-    <button onclick="testFetch()">Fetch from 127.0.0.1:8080</button>
-    <pre id="output"></pre>
-
+    <h2>Testing Local Network Access (Edge 141)</h2>
+    <p>This page attempts to fetch from <code>http://127.0.0.1:8080</code>.<br>
+       If LNA is supported and allowed, the response will appear below.</p>
+    <button onclick="testLNA()">Test LNA Fetch</button>
+    <div id="result" class="result"></div>
     <script>
-      function testFetch() {
+      function testLNA() {
+        const resultEl = document.getElementById('result');
+        resultEl.textContent = "Requesting...";
+        resultEl.className = "result";
         fetch("http://127.0.0.1:8080")
           .then(r => r.text())
-          .then(t => document.getElementById("output").textContent = "Success: " + t)
-          .catch(e => document.getElementById("output").textContent = "Error: " + e);
+          .then(t => {
+            resultEl.textContent = "Success! Response: " + t;
+            resultEl.className = "result success";
+            console.log("Response:", t);
+          })
+          .catch(e => {
+            resultEl.textContent = "Error: " + e;
+            resultEl.className = "result error";
+            console.error("Error:", e);
+          });
       }
     </script>
   </body>
