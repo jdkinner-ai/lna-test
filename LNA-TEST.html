@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Local Network Access Test</h2>
+    <button onclick="testFetch()">Fetch from 127.0.0.1:8080</button>
+    <pre id="output"></pre>
+
+    <script>
+      function testFetch() {
+        fetch("http://127.0.0.1:8080")
+          .then(r => r.text())
+          .then(t => document.getElementById("output").textContent = "Success: " + t)
+          .catch(e => document.getElementById("output").textContent = "Error: " + e);
+      }
+    </script>
+  </body>
+</html>
