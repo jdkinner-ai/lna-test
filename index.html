@@ -2,9 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Edge 141 - LNA Test Page</title>
+    <title>LNA Test Page</title>
     <style>
-      body { font-family: sans-serif; margin: 2em; }
       #result { margin-top: 1em; padding: 1em; border-radius: 4px; }
       .success { background: #e6ffe6; color: #1a7f37; }
       .error { background: #ffe6e6; color: #b91c1c; }
@@ -12,8 +11,6 @@
   </head>
   <body>
     <h2>Testing Local Network Access (Edge 141)</h2>
-    <p>This page attempts to fetch from <code>http://127.0.0.1:8080</code>.<br>
-       Click the button below to test. Feedback will appear here.</p>
     <button onclick="testLNA()">Test LNA Fetch</button>
     <div id="result"></div>
     <script>
@@ -27,11 +24,11 @@
             return r.text();
           })
           .then(t => {
-            resultEl.textContent = "Success! Local Network Access fetch succeeded.\nResponse: " + t;
+            resultEl.textContent = "✅ Success! LNA fetch succeeded.\nResponse: " + t;
             resultEl.className = "success";
           })
           .catch(e => {
-            resultEl.textContent = "Error: Local Network Access fetch failed.\n" + e;
+            resultEl.textContent = "❌ Error: LNA fetch failed.\n" + e;
             resultEl.className = "error";
           });
       }
